@@ -35,7 +35,7 @@ public class PersonagemService {
 	}
 	
 	public Personagem buscarPorId(Integer id) {
-		return personagemRepository.findOne(id);
+		return personagemRepository.getOne(id);//Verificar dps findOne findById
 	}
 	
 	public Personagem alterar(Personagem personagem) {
