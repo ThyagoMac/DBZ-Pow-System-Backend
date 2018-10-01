@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="dbzmod">
+
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBZ</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/estilo.css">
+    
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/controllers/personagem-controller.js"></script>
+    <script src="js/controllers/criacao-controller.js"></script>
+    <script src="js/directives/minhas-diretivas.js"></script>
+    <script src="js/directives/num-directive.js"></script>
+    <script src="js/directives/validation-directive.js"></script>
+    <!--<script src="js/directives/date-directive.js"></script>
+    <script src="js/directives/real-directive.js"></script>
+    <script src="js/directives/cpf-directive.js"></script>
+    <script src="js/directives/pass-directive.js"></script>-->
+    <script src="js/lib/angular-animate.min.js"></script>
+    <script src="js/lib/angular-route.min.js"></script>
+</head>
+
+<body>
+    <div class="jumbotron banner-jumbotron">
+        <h2 class="bottomright"><b>DBZ 0.2.5</b></h2>
+    </div>
+
+    <div class="container">
+        <ng-view></ng-view>
+    </div>
+    
+    <footer id="rodape">
+        <div class="container">
+            <p class="text-center">Telefone: (XX) XXXXX-XXXX
+                <br /> E-Mail: thyago.cormick@gmail.com.br
+                <br /> Copyright &copy; 2018 - by Thyago Mac
+                <br />
+                <a href="#" target="_blank">Facebook</a> |
+                <a href="#" target="_blank">Twitter</a>
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
