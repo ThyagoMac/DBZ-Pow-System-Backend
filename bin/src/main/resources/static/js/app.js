@@ -1,18 +1,6 @@
-//modulo principal
-var appDbz = angular.module('dbzmod',[]);
-
-
-//conrtollers
-appPersonagem.controller("indexController", function(){
-	
-});
-
-
-
-
-
 /**
  * 
+ */
 //<![CDATA[
 function carregarDados() {
 	  var xhttp = new XMLHttpRequest();
@@ -25,5 +13,4 @@ function carregarDados() {
 	  xhttp.send();
 	}
 carregarDados();
-//]]> 
-*/
+//]]>

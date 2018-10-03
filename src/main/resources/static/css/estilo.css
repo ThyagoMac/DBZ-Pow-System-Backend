@@ -1,0 +1,110 @@
+.form-control[disabled]{
+    background-color: white;
+}
+label{
+    margin-bottom: 0;
+    margin-top: 6px;
+}
+.label-grange{
+    margin-top: -6px;
+}
+
+.fonte-1{
+    font-size: 1.2em;
+}
+.sticky {
+    top: 0;
+    position: fixed;
+}
+
+.menu {
+    top: 0;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    z-index: 1;
+}
+
+.absolute{
+    position: relative;
+}
+
+.anicamao-fade.ng-animate {
+    transition: transform 0.8s;
+    transition: 0.5s linear all;
+}
+
+.anicamao-fade.ng-enter {
+    opacity: 0;
+}
+
+.anicamao-fade.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
+.anicamao-fade.ng-leave {
+    opacity: 1;
+}
+
+.anicamao-fade.ng-leave.ng-leave-active {
+    opacity: 0;
+    transform: scale(0.1);
+}
+
+.image-in-box {    
+    height: 230px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.card-box {
+    margin-right: 0em;
+    margin-left: 0em;
+}
+
+#rodape a {
+    text-decoration: none;
+    font-weight: bold;
+}
+footer#rodape {
+	clear: both;
+    border-top: 1px solid rgb(255, 89, 0);
+    margin-top: 1em;
+    background-color: rgba(141, 141, 141, 0.712);
+}
+footer#rodape p {
+    font-weight: bold;
+    color: fff;
+    text-align: center;
+    font-size: 0.7em;
+    padding: 1em;
+    margin: 0;
+}
+#rodape a {
+    color: fff;
+}
+
+.banner-jumbotron {
+    background-image: url("http://static4.comicvine.com/uploads/original/4/47635/1754357-z_fighters_cell.png");
+    background-color: #cccccc;
+    height: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.bottomright {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size: 35px;
+    color: orange;
+}
+
+@media (min-width: 800px) {
+    .card-box {
+        margin-right: 4%;
+        margin-left: 4%;
+    }
+}

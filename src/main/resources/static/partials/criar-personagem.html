@@ -1,0 +1,210 @@
+<div class="page-header text-center">
+    <h1>{{vm.personagem.nome}}</h1>
+</div>
+<form novalidate name="formulario" class="row" ng-submit="vm.submeter()">
+    <!--
+    <div class="form-group">
+        <label for="">Password</label>
+        <input ng-model="pass" 
+                name="pass" 
+                class="form-control" 
+                placeholder="Nascimento" 
+                ui-pass/>
+        <span class="form-control alert-danger" 
+            id="passId"
+            tipo="length-3"
+            ng-show="formulario.pass.$error.password"> Mensagem </span>
+    </div>
+
+        
+    <hr>
+    <div class="form-group">
+        <label for="data">Dinheiros</label>
+        <input ng-model="personagem.dinheiro" 
+                name="grana" 
+                class="form-control" 
+                placeholder="0,00" 
+                ui-real/>
+    </div>
+    <div class="form-group">
+        <label for="data">Data</label>
+        <input ng-model="personagem.data" 
+                name="data" 
+                class="form-control" 
+                placeholder="00/00/0000" 
+                ui-date/>
+    </div>
+    <div class="form-group">
+        <label for="data">CPF</label>
+        <input ng-model="personagem.cpf" 
+                name="cpf" 
+                class="form-control" 
+                placeholder="000.000.000-00" 
+                ui-cpf/>
+    </div>
+    <div class="form-group">
+        <label for="data">CPFd</label>
+        <input ng-model="personagem.cpfd" 
+                name="cpfd" 
+                class="form-controld" 
+                placeholder="000.000.000-00" 
+                ui-cpfd/>
+    </div>
+    <hr>
+    -->
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="name">Nome</label>
+                <input ng-model="vm.personagem.nome" 
+                    id="name"  ng-change="vm.executarFormatacao()"
+                    name="nome" 
+                    class="form-control" 
+                    required ng-maxlength="10"
+                    required
+                    
+                    ui-validation>
+
+                <span ng-show="formulario.nome.$touched && formulario.nome.$error.required" 
+                    class="form-control alert-danger">
+                    Nome Obrigatório
+                </span>
+                <span ng-show="formulario.nome.$dirty && formulario.nome.$error.maxlength" 
+                    class="form-control alert-danger">
+                    Máximo 10 caracteres!!!
+                </span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="sName">Sobre Nome</label>
+                <input ng-model="vm.personagem.sobreNome" 
+                    id="snome" 
+                    name="snome" 
+                    class="form-control" 
+                    ng-maxlength="10">
+
+                <span ng-show="formulario.nome.$dirty && formulario.snome.$error.maxlength" 
+                    class="form-control alert-danger">
+                    Máximo 10 Caracteres
+                </span>
+                
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="race">Raça</label>
+                <input ng-model="vm.personagem.raca" 
+                    id="race" 
+                    name="raca" 
+                    class="form-control" 
+                    required>
+
+                <span ng-show="formulario.raca.$touched && formulario.raca.$error.required" 
+                    class="form-control alert-danger">
+                    Raca Obrigatória
+                </span>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="age">Idade</label>
+                <input ng-model="vm.personagem.idade" 
+                    id="age" 
+                    name="idade" 
+                    class="form-control"
+                    ui-num>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="pow">Poder De Luta Inicial</label>
+                <input ng-model="vm.personagem.poderDeLuta" 
+                    id="pow" 
+                    name="poderdeluta" 
+                    class="form-control"
+                    ui-num>
+
+                <span ng-show="formulario.poderdeluta.$touched && formulario.poderdeluta.$error.required" 
+                    class="form-control alert-danger">
+                    Poder de Luta Inicial Obrigatório
+                </span>
+            </div>
+        </div>
+        <div class="form-group" name="sexo">
+            <label for="sex">Sexo: </label>
+            <label class="radio-inline">
+                <input ng-model="vm.personagem.sexo" 
+                    type="radio" 
+                    value="Masc" 
+                    checked required>
+                    Masc
+            </label>
+
+            <label class="radio-inline">
+                <input ng-model="vm.personagem.sexo" 
+                    type="radio" 
+                    value="Fem">
+                    Fem
+            </label>
+
+            <label class="radio-inline">
+                <input ng-model="vm.personagem.sexo" 
+                    type="radio" 
+                    value="Outro">
+                    Outro
+            </label>
+        </div>
+
+        <div class="form-group" name="classe">
+            <label for="class">Classe: </label>
+            <label class="radio-inline" id="class">
+                <input ng-model="vm.personagem.classe" 
+                    type="radio"   
+                    value="Balanceado" 
+                    checked required>
+                    Balanceado
+            </label>
+
+            <label class="radio-inline">
+                <input ng-model="vm.personagem.classe" 
+                    type="radio" 
+                    value="Assassino">
+                    Assassino
+            </label>
+
+            <label class="radio-inline">
+                <input ng-model="vm.personagem.classe" 
+                    type="radio" 
+                    value="Especialista">
+                    Especialista
+            </label>
+
+            <label class="radio-inline">
+                <input ng-model="vm.personagem.classe" 
+                    type="radio" 
+                    value="Tanque">
+                    Tanque
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="pic">Foto</label>
+            <input ng-model="vm.personagem.url" 
+                id="pic" 
+                name="url" 
+                class="form-control">
+        </div>
+
+        <button href="/" type="submit" ng-disabled="formulario.$invalid" class="btn btn-primary">
+            Salvar
+        </button>
+        <a href="/" class="btn btn-primary">Voltar</a>
+        <hr>
+    </div>
+    <div class="col-md-6">
+        <img class="img-responsive center-block" src="{{vm.personagem.url}}" alt="{{vm.personagem.nome}}">
+    </div>
+</form>
+
+
