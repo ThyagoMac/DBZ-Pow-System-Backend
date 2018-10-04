@@ -1,10 +1,9 @@
-angular.module('dbzmod').controller('PersonagensController', function ($scope/*, $http*/) {
+angular.module('dbzmod').controller('PersonagensController', function ($scope, $http) {
 
     var vm = this;
-
     vm.auraKi = null;
-
     vm.personagens = [];
+    vm.personagem = {};
 
     /*
     vm.personagens = [
@@ -80,27 +79,77 @@ angular.module('dbzmod').controller('PersonagensController', function ($scope/*,
         bonusM: 1,  
         url: 'http://images.uncyc.org/pt/thumb/b/b9/Picc-kid.jpg/250px-Picc-kid.jpg'
     }];
-    //local storage curso JS >><<
+    
 */
 
     vm.pesquisa = '';
     
+    
     vm.carregarPersonagens = function(){
+    	$http({method:'GET', url:'http://localhost:8000/personagens'})
+		.then(function(response){
+			vm.personagens = response.data;
+			console.log("Carregou personagens pelo db...");
+		}, function(response){
+			console.log(response.status);
+			console.log("Deu ruim o carregamento db.");
+		});
+    }
+    
+    vm.carregarPersonagensLocal = function(){
         vm.personagens = JSON.parse(localStorage.getItem("personagens"));
-        console.log(vm.personagens);
+        console.log("Carregou personagens local...");
     }
 
-    vm.salvarPersonagens = function(personagens){
+    vm.alterarPersonagens = function(personagem){
+    	
+    	vm.personagem = personagem;
+    	
+    	$http({method:'PUT', url:'http://localhost:8000/personagens'})
+		.then(function(response){
+			vm.personagens.push(response.data);
+			console.log("Salvou personagens pelo db...");
+		}, function(response){
+			console.log(response);
+			console.log("Deu ruim o salvamento db.");
+		});
+    }
+    
+    vm.alterarPersonagensLocal = function(personagens){
         localStorage.setItem("personagens", JSON.stringify(personagens));
+        console.log("salvando localhost...");
     }
 
     vm.pasarInteiro = function(retornoInteiro){
         retornoInteiro = parseInt(retornoInteiro, 10);
     }
+    
+    vm.excluir = function(personagem){
+    	vm.excluirLocal(personagem);
+    	$http({method:'DELETE', url:'http://localhost:8000/personagens/' + personagem.id})
+		.then(function(response){
+			//vm.carregarPersonagens();
+			console.log("Excluiu personagens pelo db...");
+		}, function(response){
+			console.log(response);
+			console.log("Deu ruim a remoção pelo db.");
+		});
+    }
+    vm.excluirLocal = function(personagem){
+        
+        vm.personagens = vm.personagens.filter(function(item){
+            return item.id != personagem.id;
+        });
+
+        vm.alterarPersonagensLocal(vm.personagens);
+        console.log("personagem excluido local");
+    }
 
     vm.powChange = function(personagem) {
         
-        personagem.myHp = (personagem.hp * 100)/200;
+        personagem.myHp = ((personagem.hp * 100)/200);
+        
+        //personagem.myKy = personagem.ky + "%";
         personagem.transform = parseInt(personagem.transform, 10);
         personagem.poderDeLutaAtual = parseInt(personagem.poderDeLutaAtual, 10);
         personagem.poderDeLuta = parseInt(personagem.poderDeLuta, 10);
@@ -195,7 +244,7 @@ angular.module('dbzmod').controller('PersonagensController', function ($scope/*,
 
         }
 
-        vm.salvarPersonagens(vm.personagens);
+        vm.alterarPersonagensLocal(vm.personagens);
         
     };
     
@@ -208,18 +257,11 @@ angular.module('dbzmod').controller('PersonagensController', function ($scope/*,
                 vm.personagens.splice(i, 1);
             }
         }
-        vm.salvarPersonagens(vm.personagens);
+        vm.alterarPersonagens(vm.personagens);
     }
     */
 
-    vm.excluir = function(personagem){
-        
-        vm.personagens = vm.personagens.filter(function(item){
-            return item.id != personagem.id;
-        });
-
-        vm.salvarPersonagens(vm.personagens);
-    }
+    
 
     vm.carregarPersonagens();
     

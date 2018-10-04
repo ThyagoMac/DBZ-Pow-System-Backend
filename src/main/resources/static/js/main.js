@@ -3,7 +3,7 @@ angular.module('dbzmod', ['minhasDiretivas', 'ngAnimate', 'ngRoute'])
 
         $locationProvider.html5Mode(true);
 
-        $routeProvider.when('/personagens', {
+        $routeProvider.when('/personagenspainel', {
             templateUrl: './partials/principal.html',
             controller: 'PersonagensController',
             controllerAs: 'vm'
@@ -15,7 +15,7 @@ angular.module('dbzmod', ['minhasDiretivas', 'ngAnimate', 'ngRoute'])
             controllerAs: 'vm'
         });
 
-        $routeProvider.otherwise({ redirectTo: '/personagens'})
+        $routeProvider.otherwise({ redirectTo: '/personagenspainel'})
 
 
     });

@@ -85,9 +85,19 @@ angular.module('dbzmod').controller('CriacaoController', function($scope, $http,
     }
 
     vm.salvarPersonagem = function(personagem){
+    	$http({method:'POST', url:'http://localhost:8000/personagens'})
+		.then(function(response){
+			vm.personagens.push(response.data);
+			console.log("Salvou personagens pelo db...");
+		}, function(response){
+			console.log(response);
+			console.log("Deu ruim o salvamento db.");
+		});
+    }
+    
+    vm.salvarPersonagemLocal = function(personagem){
         var personagens = vm.recuperarPersonagens(); //getPersonagens
         personagens.push(personagem) //insere personagem > personagem
-        console.log(personagens);
         localStorage.setItem("personagens", JSON.stringify(personagens));
     }
 

@@ -3,7 +3,16 @@ var appDbz = angular.module('dbzmod',[]);
 
 
 //conrtollers
-appPersonagem.controller("indexController", function(){
+appDbz.controller("indexController", function($scope, $http){
+	
+	$http({nethod:'GET', url:'localhost:8000/personagens'})
+		.then(function(response){
+			console.log(response.data);
+			console.log(response.status);
+		}, function(response){
+			console.log(response.data);
+			console.log(response.status);
+		});
 	
 });
 
