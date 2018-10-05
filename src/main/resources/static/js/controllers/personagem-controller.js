@@ -1,9 +1,10 @@
-angular.module('dbzmod').controller('PersonagensController', function ($scope, $http) {
+appDbz.controller('PersonagensController', function ($scope, $http) {
 
     var vm = this;
     vm.auraKi = null;
     vm.personagens = [];
     vm.personagem = {};
+    var urlDataBase = "http://localhost:8080";
 
     /*
     vm.personagens = [
@@ -84,9 +85,21 @@ angular.module('dbzmod').controller('PersonagensController', function ($scope, $
 
     vm.pesquisa = '';
     
-    
+    /*
     vm.carregarPersonagens = function(){
-    	$http({method:'GET', url:'http://localhost:8000/personagens'})
+    	$http.get('/personagens')
+    	.success(function(retorno){
+    		vm.personagens = retorno;
+    	})
+    	.error(function(error){
+    		console.log(error);
+    	});
+    };
+     */
+      
+     
+    vm.carregarPersonagens = function(){
+    	$http({method:'GET', url: urlDataBase + '/personagens'})
 		.then(function(response){
 			vm.personagens = response.data;
 			console.log("Carregou personagens pelo db...");
@@ -103,16 +116,14 @@ angular.module('dbzmod').controller('PersonagensController', function ($scope, $
 
     vm.alterarPersonagens = function(personagem){
     	
-    	vm.personagem = personagem;
-    	
-    	$http({method:'PUT', url:'http://localhost:8000/personagens'})
-		.then(function(response){
-			vm.personagens.push(response.data);
-			console.log("Salvou personagens pelo db...");
-		}, function(response){
-			console.log(response);
-			console.log("Deu ruim o salvamento db.");
-		});
+    	$http.put(urlDataBase + '/personagens', personagem)
+			.success(function(response){
+				//vm.personagens.push(response.data);
+				console.log("Salvou personagens pelo db...");
+			}).error(function(response){
+				console.log(response);
+				console.log("Deu ruim o salvamento db.");
+			});
     }
     
     vm.alterarPersonagensLocal = function(personagens){
@@ -126,15 +137,16 @@ angular.module('dbzmod').controller('PersonagensController', function ($scope, $
     
     vm.excluir = function(personagem){
     	vm.excluirLocal(personagem);
-    	$http({method:'DELETE', url:'http://localhost:8000/personagens/' + personagem.id})
+    	$http({method:'DELETE', url: urlDataBase + '/personagens/' + personagem.id})
 		.then(function(response){
 			//vm.carregarPersonagens();
-			console.log("Excluiu personagens pelo db...");
+			console.log("Excluiu personagem -> " + personagem.nome + " <- do db...");
 		}, function(response){
 			console.log(response);
 			console.log("Deu ruim a remoção pelo db.");
 		});
     }
+    
     vm.excluirLocal = function(personagem){
         
         vm.personagens = vm.personagens.filter(function(item){

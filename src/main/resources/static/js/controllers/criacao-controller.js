@@ -1,7 +1,8 @@
-angular.module('dbzmod').controller('CriacaoController', function($scope, $http, $timeout){
+appDbz.controller('CriacaoController', function($scope, $http, $timeout){
 
     var vm = this;
     vm.personagem = {};
+    var urlDataBase = "http://localhost:8080";
     
 
 
@@ -85,9 +86,12 @@ angular.module('dbzmod').controller('CriacaoController', function($scope, $http,
     }
 
     vm.salvarPersonagem = function(personagem){
-    	$http({method:'POST', url:'http://localhost:8000/personagens'})
+    	$http({
+    		method:'POST',
+    		url: urlDataBase +'/personagens',
+    		data: personagem })
 		.then(function(response){
-			vm.personagens.push(response.data);
+			//vm.personagens.push(response.data);
 			console.log("Salvou personagens pelo db...");
 		}, function(response){
 			console.log(response);
@@ -100,15 +104,23 @@ angular.module('dbzmod').controller('CriacaoController', function($scope, $http,
         personagens.push(personagem) //insere personagem > personagem
         localStorage.setItem("personagens", JSON.stringify(personagens));
     }
+    
+    vm.limparForm = function(){
+    	vm.personagem = {};
+    }
 
     vm.submeter = function() {
 
         if(!vm.validationPersonagem(vm.personagem)){
             return; //return interrompe o fuxo do codigo.
         }
-        vm.personagem.id = vm.gerarIdentificador(); //gera obj id e joga p/ personagem
+        //gera obj id e joga p/ personagem
+        //vm.personagem.id = vm.gerarIdentificador();
         vm.configurarValoresPadrao(vm.personagem); //constructor valores padroes
         vm.salvarPersonagem(vm.personagem);
+        //Esvazia personagem q está na tela
+        vm.limparForm();
+        
     }
     
 });

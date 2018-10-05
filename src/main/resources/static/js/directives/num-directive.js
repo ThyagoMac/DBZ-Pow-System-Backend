@@ -1,5 +1,4 @@
-angular.module('minhasDiretivas')
-    .directive('uiNum', function () {
+appDbz.directive('uiNum', function () {
         console.log("num-directive10");
 
         return {

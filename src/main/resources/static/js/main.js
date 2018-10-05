@@ -1,16 +1,17 @@
-angular.module('dbzmod', ['minhasDiretivas', 'ngAnimate', 'ngRoute'])
-    .config(function($routeProvider, $locationProvider){
+var appDbz = angular.module('dbzmod', ['ngAnimate', 'ngRoute']);
+
+appDbz.config(function($routeProvider, $locationProvider){
 
         $locationProvider.html5Mode(true);
 
         $routeProvider.when('/personagenspainel', {
-            templateUrl: './partials/principal.html',
+            templateUrl: './views/principal.html',
             controller: 'PersonagensController',
             controllerAs: 'vm'
         });
 
         $routeProvider.when('/personagens/new', {
-            templateUrl: './partials/criar-personagem.html',
+            templateUrl: './views/criar-personagem.html',
             controller: 'CriacaoController',
             controllerAs: 'vm'
         });

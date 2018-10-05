@@ -1,7 +1,10 @@
 <div class="page-header text-center">
     <h1>{{vm.personagem.nome}}</h1>
 </div>
-<form novalidate name="formulario" class="row" ng-submit="vm.submeter()">
+<form novalidate 
+	name="formulario" 
+	class="row" 
+	ng-submit="vm.submeter()">
     <!--
     <div class="form-group">
         <label for="">Password</label>
@@ -190,7 +193,7 @@
 
         <div class="form-group">
             <label for="pic">Foto</label>
-            <input ng-model="vm.personagem.url" 
+            <input ng-model="vm.personagem.url" 	
                 id="pic" 
                 name="url" 
                 class="form-control">

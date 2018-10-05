@@ -30,7 +30,7 @@ public class PersonagemService {
 		return personagemRepository.findAll();
 	}
 	
-	public void excluir (Personagem personagem) {
+	public void excluir(Personagem personagem) {
 		personagemRepository.delete(personagem);
 	}
 	
